@@ -15,52 +15,50 @@ body
     font-family: 'Poppins', sans-serif;
 }
 
-h1
-{
-    /* font-size: 32px; */
-    font-weight: 800;
-    font-style: italic;
-    
-}
 
 main
 {
     max-width: 375px;
 }
 
+/* card or form */
+
 form
 {
-    
-}
-
-.cool
-{
+    margin-bottom: 65px;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 60px;
-    width: 100%;
 }
 
-.betw
+label
 {
-    margin: 0 10px;
+    color: var(--smokey-grey);
+    font-weight: 400;
 }
+
 
 input
 {
+    
+    /* height: 30px; */
     width: 65px;
-    height: 30px;
-
+    height: 35px;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    padding: 10%;
+    font-size: 22px;
+    padding: 10% 15%;
+    border-color: var(--light-grey);
+    border-style:solid;
+    border-radius: 5px;
+    border-width: 1px;
+    outline: none;
+    
 }
 
-
-img
+input[type=number]:focus
 {
-    width: 40%;
+    border-color: var(--purple);
 }
+
+/* Button with horizontal line */
 
 hr
 {
@@ -68,16 +66,49 @@ hr
     width: 100%;
 }
 
+img
+{
+    width: 40%;
+}
+
+
+/* Calculated numbers */
+
+p
+{
+    font-weight: 800;
+    font-style: italic;
+    font-size: 3.2rem;
+    margin: 0;
+    line-height: 110%;
+    
+}
+
+span
+{
+    color: var(--purple);
+}
+
+
+/* card or form */
+
 .card
 {
     max-width: 375px;
     background-color: var(--white);
-    padding: 6%;
+    padding: 13% 6%;
     border-radius: 20px 20px 100px 20px;
     margin: 90px 10px 0px 10px;
 }
 
-.line-icon
+.month-div
+{
+    margin: 0 38px;
+}
+
+/* Button with horizontal line */
+
+.line-button-div
 {
     display: flex;
     align-items: center;
@@ -101,5 +132,21 @@ hr
     transform: translate(-50%, -50%); 
 }
 
-.attribution { font-size: 11px; text-align: center; margin-top: 100px; }
+.icon-arrow-background:hover
+{
+    background-color: var(--off-black);
+}
+
+/* Calculated numbers */
+
+.numbers
+{
+    margin-top: 65px;
+    /* margin-bottom: 30px; */
+}
+
+
+/* Attribution */
+
+.attribution { font-size: 11px; text-align: center; margin-top: 200px; }
 .attribution a { color: hsl(228, 45%, 44%); }
