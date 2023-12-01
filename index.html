@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="index.js"></script>
 
   <title>Frontend Mentor | Age calculator app</title>
 </head>
@@ -19,17 +20,21 @@
       <form action="">
         <div class="input-div">
           <label>DAY</label> <br />
-          <input type="number"> 
+          <input type="text" placeholder="DD" maxlength="2" onkeydown="limitDays(this);" onkeyup="limitDays(this);" >
+          <p id="day-message" class="message"></p> 
         </div>
 
         <div class="input-div month-div">
           <label>MONTH</label> <br />
-          <input type="number"> 
+          <input type="text" placeholder="MM" maxlength="2" onkeydown="limitMonths(this);" onkeyup="limitMonths(this);" >
+          <p id="month-message" class="message"></p>  
         </div>
 
         <div class="input-div">
           <label>YEAR</label> <br />
-          <input type="number"> 
+          <input type="text" placeholder="YYYY"> 
+          <p class="message"></p>
+          <!-- <p class="message">This field is required</p>   -->
         </div>
       </form>
 

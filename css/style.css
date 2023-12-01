@@ -118,6 +118,14 @@ span
     margin: 0 45px;
 }
 
+.message
+{
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--light-red);
+    font-weight: 400;
+}
+
 /* Button with horizontal line */
 
 .line-button-div
