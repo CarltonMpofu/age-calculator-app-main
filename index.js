@@ -197,8 +197,9 @@ function calculateAge()
             }
             else
             {
-                // yearAge.innerText = now.getFullYear() - oldDate.getFullYear();
-                // // const now2 = new Date(2024, 0, 1);
+                yearElement.innerText = "--";
+                monthElement.innerText = "--";
+                dayElement.innerText = "--";
 
                 let year = now.getFullYear() - dob.getFullYear();
                 let monthDiff = (now.getMonth()) - dob.getMonth();
@@ -229,12 +230,18 @@ function calculateAge()
                         year -= 1;
                     }
                 }
-
-                console.log(`Age: ${year} years, ${monthDiff} months, ${days} days`);
                 
-                yearElement.innerText = year;
-                monthElement.innerText = monthDiff;
-                dayElement.innerText = days;
+                // yearElement.innerText = year;
+                // monthElement.innerText = monthDiff;
+                // dayElement.innerText = days;
+
+                animateValue(yearElement, 0, year, 2000, () => {
+                    // console.log("Done");
+                    animateValue(monthElement, 0, monthDiff, 2000, () => {
+                        animateValue(dayElement, 0, days, 2000);
+                    });
+                });
+                // animateValue(monthElement, 0, monthDiff, 1000);
 
             }
         }
@@ -247,3 +254,24 @@ function calculateAge()
 
 }
 
+
+function animateValue(obj, start, end, duration, callback) 
+{
+    let startTimestamp = null;
+    const step = (timestamp) => 
+    {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if(progress < 1)
+        {
+            window.requestAnimationFrame(step);
+        }
+        else if(callback)
+        {
+            callback();
+        }
+    };
+
+    window.requestAnimationFrame(step);
+}
