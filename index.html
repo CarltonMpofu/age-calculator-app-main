@@ -17,39 +17,39 @@
 <body>
   <main>
     <div class="card">
-      <form action="">
+      <form name="date-form" action="">
         <div class="input-div">
           <label>DAY</label> <br />
-          <input type="text" placeholder="DD" maxlength="2" onkeydown="limitDays(this);" onkeyup="limitDays(this);" >
+          <input type="text" name="day" placeholder="DD" maxlength="2" onkeydown="limitDays(this);" onkeyup="limitDays(this);" required>
           <p id="day-message" class="message"></p> 
         </div>
 
         <div class="input-div month-div">
           <label>MONTH</label> <br />
-          <input type="text" placeholder="MM" maxlength="2" onkeydown="limitMonths(this);" onkeyup="limitMonths(this);" >
+          <input type="text"  name="month" placeholder="MM" maxlength="2" onkeydown="limitMonths(this);" onkeyup="limitMonths(this);" >
           <p id="month-message" class="message"></p>  
         </div>
 
         <div class="input-div">
           <label>YEAR</label> <br />
-          <input type="text" placeholder="YYYY"> 
-          <p class="message"></p>
+          <input type="text" name="year" placeholder="YYYY" maxlength="4" onkeydown="limitYear(this);" onkeyup="limitYear(this);" > 
+          <p id="year-message" class="message"></p>
           <!-- <p class="message">This field is required</p>   -->
         </div>
       </form>
 
       <div class="line-button-div">
         <hr>
-        <div class="icon-arrow-background">
+        <div id="calculate-button" class="icon-arrow-background" onclick="calculateAge();">
           <img src="assets/images/icon-arrow.svg" alt="" width="">
 
         </div>
       </div>
 
       <div class="numbers">
-      <p><span>--</span> years</p>
-      <p><span>--</span> months</p>
-      <p><span>--</span> days</p>
+      <p><span id="year-age">--</span> years</p>
+      <p><span id="month-age">--</span> months</p>
+      <p><span id="day-age">--</span> days</p>
     </div>
 
     </div>
