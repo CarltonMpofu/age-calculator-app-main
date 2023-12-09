@@ -5,12 +5,67 @@ function limitDays(element)
     checkDay(element.value, dayErrorMessage);
 }
 
+function showDayInvalid()
+{
+    const dayLabel = document.getElementById("day-label");
+    const dayInput = document.forms["date-form"]["day"];
+
+    dayLabel.classList.add("label-red");
+    dayInput.classList.add("input-red"); 
+}
+
+function hideDayInvalid()
+{
+    const dayLabel = document.getElementById("day-label");
+    const dayInput = document.forms["date-form"]["day"];
+
+    dayLabel.classList.remove("label-red");
+    dayInput.classList.remove("input-red"); 
+}
+
+function showMonthInvalid()
+{
+    const monthLabel = document.getElementById("month-label");
+    const monthInput = document.forms["date-form"]["month"];
+
+    monthLabel.classList.add("label-red");
+    monthInput.classList.add("input-red"); 
+}
+
+function hideMonthInvalid()
+{
+    const monthLabel = document.getElementById("month-label");
+    const monthInput = document.forms["date-form"]["month"];
+
+    monthLabel.classList.remove("label-red");
+    monthInput.classList.remove("input-red"); 
+}
+
+function showYearInvalid()
+{
+    const yearLabel = document.getElementById("year-label");
+    const yearInput = document.forms["date-form"]["year"];
+
+    yearLabel.classList.add("label-red");
+    yearInput.classList.add("input-red"); 
+}
+
+function hideYearInvalid()
+{
+    const yearLabel = document.getElementById("year-label");
+    const yearInput = document.forms["date-form"]["year"];
+
+    yearLabel.classList.remove("label-red");
+    yearInput.classList.remove("input-red"); 
+}
+
 function checkDay(day, dayErrorMessage) {
     if (day.length >= 1) {
         // Check if it is a number
         if (isNaN(day)) { // is not a number
 
             dayErrorMessage.innerText = "Must enter valid day";
+            showDayInvalid()
             return false;
         }
 
@@ -18,10 +73,12 @@ function checkDay(day, dayErrorMessage) {
 
             if (day >= 1 && day <= 31) {
                 dayErrorMessage.innerText = "";
+                hideDayInvalid();
             }
 
             else {
                 dayErrorMessage.innerText = "Must enter valid day";
+                showDayInvalid()
                 return false
             }
 
@@ -29,6 +86,7 @@ function checkDay(day, dayErrorMessage) {
     }
     else {
         dayErrorMessage.innerText = "";
+        hideDayInvalid();
     }
 
     return true;
@@ -47,6 +105,7 @@ function checkMonth(month, monthErrorMessage) {
         if (isNaN(month)) { // is not a number
 
             monthErrorMessage.innerText = "Must enter valid month";
+            showMonthInvalid();
             return false;
         }
 
@@ -54,10 +113,12 @@ function checkMonth(month, monthErrorMessage) {
 
             if (month >= 1 && month <= 12) {
                 monthErrorMessage.innerText = "";
+                hideMonthInvalid()
             }
 
             else {
                 monthErrorMessage.innerText = "Must enter valid month";
+                showMonthInvalid();
                 return false;
             }
 
@@ -66,6 +127,7 @@ function checkMonth(month, monthErrorMessage) {
 
     else {
         monthErrorMessage.innerText = "";
+        hideMonthInvalid()
     }
 
     return true;
@@ -85,6 +147,7 @@ function checkYear(year, yearErrorMessage) {
         if (isNaN(year)) { // is not a number
 
             yearErrorMessage.innerText = "Must enter valid year";
+            showYearInvalid()
             return false;
         }
 
@@ -93,15 +156,18 @@ function checkYear(year, yearErrorMessage) {
             
             if (year > now.getFullYear()) {
                 yearErrorMessage.innerText = "Must be in the past";
+                showYearInvalid()
                 return false;
             }
 
             else if (year >= 1 && year <= now.getFullYear()) {
                 yearErrorMessage.innerText = "";
+                hideYearInvalid()
             }
 
             else {
                 yearErrorMessage.innerText = "Must enter valid year";
+                showYearInvalid()
                 return false;
             }
 
@@ -110,6 +176,7 @@ function checkYear(year, yearErrorMessage) {
 
     else {
         yearErrorMessage.innerText = "";
+        hideYearInvalid()
     }
 
     return true;
@@ -155,6 +222,7 @@ function calculateAge()
     else
     {
         dayErrorMessage.innerText = "field is required";
+        showDayInvalid();
         canCalculate = false;
     }
 
@@ -167,6 +235,7 @@ function calculateAge()
     else
     {
         monthErrorMessage.innerText = "field is required";
+        showMonthInvalid();
         canCalculate = false;
     }
 
@@ -179,20 +248,22 @@ function calculateAge()
     else
     {
         yearErrorMessage.innerText = "field is required";
+        showYearInvalid();
         canCalculate = false;
     }
 
     if(canCalculate)
     {
         const dob = new Date(dobYear, dobMonth-1, dobDay);
-        
+
         // check if the day is valid 
-        if(dob.getDate() <= new Date(dobYear, dobMonth, 0).getDate())
+        if(dobDay <= daysInMonth(dobMonth-1, dobYear) )
         {
             // check if year is atleast 1900
             if(dobYear < 1900)
             {
                 yearErrorMessage.innerText = "minimum year is 1900";
+                showYearInvalid();
                 return false;
             }
             else
@@ -235,27 +306,27 @@ function calculateAge()
                 // monthElement.innerText = monthDiff;
                 // dayElement.innerText = days;
 
-                animateValue(yearElement, 0, year, 2000, () => {
-                    // console.log("Done");
-                    animateValue(monthElement, 0, monthDiff, 2000, () => {
-                        animateValue(dayElement, 0, days, 2000);
-                    });
-                });
+
+                animateValue(yearElement, 0, year, 1000);
+                animateValue(monthElement, 0, monthDiff, 2000);
+                animateValue(dayElement, 0, days, 2000);
                 // animateValue(monthElement, 0, monthDiff, 1000);
 
             }
         }
         else
         {
-            dayErrorMessage = "must enter valid day";
+            dayErrorMessage.innerText = "must enter valid day";
+            showDayInvalid();
+            showMonthInvalid();
+            showYearInvalid();
             return;
         }
     }
 
 }
 
-
-function animateValue(obj, start, end, duration, callback) 
+function animateValue(obj, start, end, duration) 
 {
     let startTimestamp = null;
     const step = (timestamp) => 
@@ -267,11 +338,30 @@ function animateValue(obj, start, end, duration, callback)
         {
             window.requestAnimationFrame(step);
         }
-        else if(callback)
-        {
-            callback();
-        }
     };
 
     window.requestAnimationFrame(step);
 }
+
+
+
+// function animateValue(obj, start, end, duration, callback) 
+// {
+//     let startTimestamp = null;
+//     const step = (timestamp) => 
+//     {
+//       if (!startTimestamp) startTimestamp = timestamp;
+//       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+//       obj.innerHTML = Math.floor(progress * (end - start) + start);
+//         if(progress < 1)
+//         {
+//             window.requestAnimationFrame(step);
+//         }
+//         else if(callback)
+//         {
+//             callback();
+//         }
+//     };
+
+//     window.requestAnimationFrame(step);
+// }
