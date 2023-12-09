@@ -18,19 +18,19 @@
   <main>
     <div class="card">
       <form name="date-form" action="">
-        <div class="input-div">
+        <div>
           <label id="day-label">DAY</label> <br />
           <input type="text" name="day" placeholder="DD" maxlength="2" onkeydown="limitDays(this);" onkeyup="limitDays(this);" required>
           <p id="day-message" class="message"></p> 
         </div>
 
-        <div class="input-div month-div">
+        <div class="month-div">
           <label id="month-label">MONTH</label> <br />
           <input type="text"  name="month" placeholder="MM" maxlength="2" onkeydown="limitMonths(this);" onkeyup="limitMonths(this);" >
           <p id="month-message" class="message"></p>  
         </div>
 
-        <div class="input-div">
+        <div>
           <label id="year-label">YEAR</label> <br />
           <input type="text" name="year" placeholder="YYYY" maxlength="4" onkeydown="limitYear(this);" onkeyup="limitYear(this);" > 
           <p id="year-message" class="message"></p>
