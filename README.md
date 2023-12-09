@@ -39,8 +39,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Link to solution](https://your-solution-url.com)
-- Live Site URL: [Link to live site](https://your-live-site-url.com)
+- Solution URL: [Link to solution](https://www.frontendmentor.io/solutions/age-calculator-app-html-css-flexbox-javascript-dDEugiDwbv)
+- Live Site URL: [Link to live site](https://carltonmpofu.github.io/age-calculator-app-main/)
 
 ## My process
 
